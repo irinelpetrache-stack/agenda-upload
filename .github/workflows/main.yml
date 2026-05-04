@@ -1,0 +1,26 @@
+name: Upload to App Store
+
+on:
+  workflow_dispatch:
+
+jobs:
+  upload:
+    runs-on: macos-latest
+
+    steps:
+      - name: Download IPA
+        run: |
+          curl -L -o app.ipa https://github.com/irinelpetrache-stack/agenda-upload/releases/download/v1/ios-2.121943.3.ipa
+
+      - name: Install API Key
+        run: |
+          mkdir -p ~/.appstoreconnect/private_keys
+          echo "${{ secrets.APPSTORE_API_KEY }}" > ~/.appstoreconnect/private_keys/AuthKey.p8
+
+      - name: Upload to App Store
+        run: |
+          xcrun altool --upload-app \
+            -f app.ipa \
+            -t ios \
+            --apiKey ${{ secrets.APPSTORE_KEY_ID }} \
+            --apiIssuer ${{ secrets.APPSTORE_ISSUER_ID }}
