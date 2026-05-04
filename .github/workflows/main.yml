@@ -12,7 +12,7 @@ jobs:
         run: |
           curl -L -o app.ipa https://github.com/irinelpetrache-stack/agenda-upload/releases/download/v1/ios-2.121943.3.ipa
 
-              - name: Install API Key
+      - name: Install API Key
         run: |
           mkdir -p ~/.appstoreconnect/private_keys
           mkdir -p ./private_keys
