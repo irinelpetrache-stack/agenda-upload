@@ -17,11 +17,9 @@ jobs:
           mkdir -p ~/.appstoreconnect/private_keys
           mkdir -p ./private_keys
           mkdir -p ~/.private_keys
-
-         echo "${{ secrets.APPSTORE_API_KEY }}" | tr -d '\r' > ~/.appstoreconnect/private_keys/AuthKey_${{ secrets.APPSTORE_KEY_ID }}.p8
+          echo "${{ secrets.APPSTORE_API_KEY }}" | tr -d '\r' > ~/.appstoreconnect/private_keys/AuthKey_${{ secrets.APPSTORE_KEY_ID }}.p8
           cp ~/.appstoreconnect/private_keys/AuthKey_${{ secrets.APPSTORE_KEY_ID }}.p8 ./private_keys/AuthKey_${{ secrets.APPSTORE_KEY_ID }}.p8
           cp ~/.appstoreconnect/private_keys/AuthKey_${{ secrets.APPSTORE_KEY_ID }}.p8 ~/.private_keys/AuthKey_${{ secrets.APPSTORE_KEY_ID }}.p8
-
           chmod 600 ~/.appstoreconnect/private_keys/AuthKey_${{ secrets.APPSTORE_KEY_ID }}.p8
 
       - name: Upload to App Store
